@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>UHospital Registro</title>
+        <title>UHospital Registrarse</title>
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -49,13 +49,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputG">Nombre de usuario</label>
-                                                        <input class="form-control py-4" id="usuario" type="text" placeholder="Cree un nombre de usuario" />
+                                                        <input class="form-control py-4" id="usuario" type="text" placeholder="Crea un nombre de usuario" />
                                                     </div>
                                                 </div>                                              
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputPassword">Contraseña</label>
-                                                        <input class="form-control py-4" id="contra" type="password" placeholder="Enter password" />
+                                                        <input class="form-control py-4" id="contra" type="password" placeholder="Crea una contraseña" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -65,11 +65,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" onclick="registro_paciente()">Create Account</a></div>
+                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" onclick="crear()">Create Account</a></div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="login.html">Tengo una cuenta Ir al inicio de sesión</a></div>
+                                        <div class="small"><a href="login.html">¿Ya tienes una cuenta? Ir al inicio de sesión</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -78,31 +78,25 @@
                 </main>
             </div>
             <script>
-                function registro_paciente() {
-                    const nombre = document.getElementById('nombre').value;
-                    const apellido = document.getElementById('apellido').value;
-                    const fecha = document.getElementById('fecha').value;
-                    const sexo = document.getElementById('sexo').value;
-                    const usuario = document.getElementById('usuario').value;
-                    const contra = document.getElementById('contra').value;
-                    const tel = document.getElementById('tel').value;
-                    //https://proyecto2-t1.herokuapp.com/login?nombre_usuario=admin&contrasena=1234
-                    //Revisar el método, lanza el error 405.
-                    const url = 'https://api202001923.herokuapp.com/';
-                    const ruta = url + "registro_paciente?nombre=" + nombre + "&apellido=" + apellido + "&fecha_nacimiento=" + fecha +"&sexo=" + sexo +"&nombre_usuario=" + usuario + "&contrasena=" + contra +"&telefono=" + tel;
-                    alert("usuario " + usuario )
-                    fetch(ruta)
-                        .then((resp) => resp.json())
-                        .then(function (data) {
-                            //data = lo que nos llega
-                            //data = {"estado":X,"mensaje":X}
-                            alert(data.mensaje)
-                            if(data.estado == 1){
-                                window.location.href = "login.html"
-                            }
-                        }).catch(function (error) {
-                            console.log(error);
-                        });
+function crear(){
+                    let xhr = new XMLHttpRequest();
+                    var ruta = "https://api202001923.herokuapp.com/registro_paciente";
+                    let json = JSON.stringify({
+                        nombre: document.getElementById("nombre").value,
+                        apellido: document.getElementById("apellido").value,
+                        fecha_nacimiento: document.getElementById("fecha").value,
+                        sexo: document.getElementById("sexo").value,
+                        nombre_usuario: document.getElementById("usuario").value,
+                        contrasena: document.getElementById("contra").value,
+                        telefono: document.getElementById("tel").value,
+                    })
+                    console.log(json)
+                    const nmbr = document.getElementById("nombre").value
+                    const usr = document.getElementById("usuario").value
+                    alert("Paciente " + nmbr + " te has registrado exitosamente. Tu nombre de usuario es: " + usr)
+                    xhr.open("POST",ruta)
+                    xhr.setRequestHeader('Content-type', 'application/json; charset= utf-8')
+                    xhr.send(json)
                 }
             </script>
             <div id="layoutAuthentication_footer">
