@@ -1,0 +1,24 @@
+<html>
+<head>
+    <script>
+        function getParametro(nombre) {
+            return (window.location.search.match(new RegExp('[?&]' + nombre + '=([^&]+)')) || [, null])[1];
+        }
+
+        eliminar_pac();
+
+        async function eliminar_pac(){
+            let json = JSON.stringify({indice: getParametro("indice")})
+            let respuesta = await fetch("https://api202001923.herokuapp.com/eliminar_paciente",{
+                method: 'POST',
+                body: json,
+                headers: {'Content-Type': 'application/json'}
+            }).catch(function(error){
+                console.log(error)
+            });
+            window.location.href = "carga_pacientes.html"
+        }
+    </script>
+</head>
+
+</html>
