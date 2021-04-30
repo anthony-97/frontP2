@@ -57,7 +57,7 @@
                 const user = document.getElementById('usuario').value;
                 const contra = document.getElementById('contrasena').value;
                 //https://proyecto2-t1.herokuapp.com/login?nombre_usuario=admin&contrasena=1234
-                const url = 'https://api202001923.herokuapp.com/';
+                const url = 'http://localhost:3000/';
                 const ruta = url + "login?nombre_usuario=" + user + "&contrasena=" + contra;
                // alert("usuario " + user )
                 fetch(ruta)
@@ -67,7 +67,12 @@
                         //data = {"estado":X,"mensaje":X}
                         alert(data.mensaje)
                         if(data.estado == 1){
-                            window.location.href = "index.html"
+                            if(data.sesion == 1){
+                            window.location.href = "admin.html?user=" + user
+                            }
+                            if(data.sesion == 2){
+                            window.location.href = "paciente.html"
+                            }
                         }
                     }).catch(function (error) {
                         console.log(error);
