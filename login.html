@@ -68,10 +68,16 @@
                         alert(data.mensaje)
                         if(data.estado == 1){
                             if(data.sesion == 1){
-                            window.location.href = "admin.html?user=" + user
+                            window.location.href = "project.html"
                             }
                             if(data.sesion == 2){
                             window.location.href = "paciente.html"
+                            }
+                            if(data.sesion == 3){
+                            window.location.href = "edit_med.html"
+                            }
+                            if(data.sesion == 4){
+                            window.location.href = "edit_enf.html"
                             }
                         }
                     }).catch(function (error) {

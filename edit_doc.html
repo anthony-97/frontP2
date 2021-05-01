@@ -100,8 +100,8 @@
                     contrasena: document.getElementById("contrasena").value,
                     especialidad: document.getElementById("especialidad").value,
                     telefono: document.getElementById("telefono").value
-                })
-                let respuesta = await fetch("https://api202001923.herokuapp.com/editar_doctor", {
+                }) //Agregar s al http para Heroku
+                let respuesta = await fetch("http://localhost:3000/editar_doctor", {
                     method: 'POST',
                     body: json,
                     headers: { 'Content-Type': 'application/json' }

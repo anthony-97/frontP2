@@ -23,7 +23,7 @@
                 document.getElementById("contenido").innerHTML = contenido
                 envio = JSON.stringify({ contenido: contenido });
                 console.log(envio)
-                let respuesta = fetch("https://api202001923.herokuapp.com/cargar_doctores", {
+                let respuesta = fetch("http://localhost:3000/cargar_doctores", {
                     method: 'POST',
                     body: envio,
                     headers: { 'Content-Type': 'application/json' }
@@ -176,6 +176,7 @@
                 var antes = `<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>
         <tr>
+            <th>Código</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Fecha de nacimiento</th>
@@ -190,7 +191,7 @@
                 var despues = `</tbody>
 </table>`
                 let xhr = new XMLHttpRequest();
-                var ruta = "https://api202001923.herokuapp.com/obtener_doctores";
+                var ruta = "http://localhost:3000/obtener_doctores";
                 xhr.open('GET', ruta);
                 xhr.send()
                 xhr.onreadystatechange = (e) => {
@@ -200,6 +201,8 @@
                     for (var i = 1; i<doctores.length; i++) {
                         cuerpo += '<tr>';
                         cuerpo2 += '<tr>';
+                        cuerpo += '<td>' + i + '</td>';
+                        cuerpo2 += '<td>' + i + '</td>';
                         cuerpo += '<td>' + doctores[i].nombre + '</td>';
                         cuerpo2 += '<td>' + doctores[i].nombre + '</td>';
                         cuerpo += '<td>' + doctores[i].apellido + '</td>';

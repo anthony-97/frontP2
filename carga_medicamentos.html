@@ -23,7 +23,7 @@
                 document.getElementById("contenido").innerHTML = contenido
                 envio = JSON.stringify({ contenido: contenido });
                 console.log(envio)
-                let respuesta = fetch("https://api202001923.herokuapp.com/cargar_medicamentos", {
+                let respuesta = fetch("http://localhost:3000/cargar_medicamentos", {
                     method: 'POST',
                     body: envio,
                     headers: { 'Content-Type': 'application/json' }
@@ -176,6 +176,7 @@
                 var antes = `<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>
         <tr>
+            <th>Codigo</th>
             <th>Nombre</th>
             <th>Precio</th>
             <th>Descripcion</th>
@@ -185,8 +186,8 @@
     <tbody>`
                 var despues = `</tbody>
 </table>`
-                let xhr = new XMLHttpRequest();
-                var ruta = "https://api202001923.herokuapp.com/obtener_medicamentos";
+                let xhr = new XMLHttpRequest(); //https://api202001923.herokuapp.com
+                var ruta = "http://localhost:3000/obtener_medicamentos";
                 xhr.open('GET', ruta);
                 xhr.send()
                 xhr.onreadystatechange = (e) => {
@@ -196,6 +197,8 @@
                     for (var i = 1; i < medicamentos.length; i++) {
                         cuerpo += '<tr>';
                         cuerpo2 += '<tr>';
+                        cuerpo += '<td>' + i + '</td>';
+                        cuerpo2 += '<td>' + i + '</td>';
                         cuerpo += '<td>' + medicamentos[i].nombre + '</td>';
                         cuerpo2 += '<td>' + medicamentos[i].nombre + '</td>';
                         cuerpo += '<td>' + medicamentos[i].precio + '</td>';
