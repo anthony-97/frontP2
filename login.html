@@ -68,10 +68,10 @@
                         alert(data.mensaje)
                         if(data.estado == 1){
                             if(data.sesion == 1){
-                            window.location.href = "project.html"
+                            window.location.href = "admin.html"
                             }
                             if(data.sesion == 2){
-                            window.location.href = "paciente.html"
+                            window.location.href = "paciente.html?id=" + data.indice + "&n=" + data.nombre
                             }
                             if(data.sesion == 3){
                             window.location.href = "edit_med.html"
