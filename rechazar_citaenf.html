@@ -5,19 +5,20 @@
             return (window.location.search.match(new RegExp('[?&]' + nombre + '=([^&]+)')) || [, null])[1];
         }
 
-        eliminar_pac();
+        rechazar_cita();
 
-        async function eliminar_pac(){
+        async function rechazar_cita(){
             let json = JSON.stringify({indice: getParametro("indice")})
-            let respuesta = await fetch("http://localhost:3000/eliminar_paciente",{
+            let respuesta = await fetch("http://localhost:3000/rechazar_cita",{
                 method: 'POST',
                 body: json,
                 headers: {'Content-Type': 'application/json'}
             }).catch(function(error){
                 console.log(error)
             });
-            window.location.href = "carga_pacientes.html"
+            window.location.href = "enfermera.html?id=" + getParametro("id") + "&n=" + getParametro("n")
         }
+        alert("La cita ha sido rechazada")
     </script>
 </head>
 

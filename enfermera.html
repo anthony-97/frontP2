@@ -19,7 +19,7 @@
         <link href="" rel="stylesheet">
       
       
-        <title>UHospital</title>
+        <title>UHospital Enfermera</title>
       
       <link href="./main.550dcf66.css" rel="stylesheet"></head>
       
@@ -54,7 +54,7 @@
       <script>
         function escribir(){
         const nombre = getParametro("n");
-        alert("Paciente: " + nombre);
+        alert("Enfermera: " + nombre);
         }
       </script>
 
@@ -62,7 +62,7 @@
           <div class="container">
             <div class="row">
               <div class="col-xs-12 col-md-8 col-md-offset-2">
-                <h1 class="text-center">Bienvenido Paciente</h1>
+                <h1 class="text-center">Bienvenida Enfermera</h1>
                 <body onLoad="escribir()"></body>
                 <p class="text-center">¡Es un gusto tenerte aquí!</p>
              </div>
@@ -73,8 +73,8 @@
                   <div class="col-xs-12 col-md-12">
                     <h3>¿Qué deseas hacer?</h3>
                   </div>
-                  <a class="btn btn-primary" href="#layoutSidenav_content">Solicitar una cita</a>
-                  <a class="btn btn-primary" href="medicamentos.html">Comprar medicamentos</a>
+                  <a class="btn btn-primary" href="#layoutSidenav_content">Gestionar citas de pacientes</a>
+                  <a class="btn btn-primary" href="carga_enfermeras.html">Generar Facturas</a>
                   </div>
                   </div>  
                 </div>
@@ -89,99 +89,59 @@
     </script>
 </head>
 
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid">
-                    <h1 class="mt-4">Solicitar Cita</h1>
-                    <div id="solicitar">
-                        <form>
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="inputFirstName">Fecha</label>
-                                        <input class="form-control py-4" id="fecha" type="text"
-                                            placeholder="Ingrese Fecha" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="small mb-1" for="inputLastName">Hora</label>
-                                        <input class="form-control py-4" id="hora" type="text"
-                                            placeholder="Ingrese hora" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="inputEmailAddress">Motivo</label>
-                                <input class="form-control py-4" id="motivo" type="text" placeholder="Ingrese motivo" />
-                            </div>
-                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block"
-                                    onclick="solicitar()">Solicitar Cita</a></div>
-                        </form>
-                    </div>
-                </div>
-            </main>
-            <script>//Al cambiar a heroku, ponerle la s al http
-                const url = 'http://localhost:3000/';
-                const ruta = url + "tiene_cita?id=" + getParametro("id");
-                fetch(ruta)
-                    .then((resp) => resp.json())
-                    .then(function (data) {
-                        console.log(data)
-                        if (data.estado == 1) {
-                            document.getElementById("solicitar").innerHTML = `<div class="alert alert-danger" role="alert">
-  Usted ya tiene una cita en estado pendiente o aceptada.
-</div>
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Estado</th>
-            <th>Doctor</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-        <td>${data.fecha}</td>
-        <td>${data.hora}</td>
-        <td>${data.estado_cita}</td>
-        <td>${data.doctor}</td>
-        </tr>
-    </tbody>
-</table>`;
+<div id="layoutSidenav_content">
+  <main>
+      <div class="container-fluid">
+          <h1 class="mt-4">Citas</h1>
+          <div class="table-responsive" id="tabla">
 
-                        }
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
+          </div>
+          <div class="table-responsive" id="tabla2" style="visibility: hidden;">
 
-
-                async function solicitar() {
-                    var sol = await solicitar_cita();
-                }
-
-                async function solicitar_cita() {
-                    let json = JSON.stringify({
-                        id: getParametro("id"),
-                        fecha: document.getElementById("fecha").value,
-                        hora: document.getElementById("hora").value,
-                        motivo: document.getElementById("motivo").value
-                    })
-                    let respuesta = await fetch("http://localhost:3000/solicitar_cita", {
-                        method: 'POST',
-                        body: json,
-                        headers: { 'Content-Type': 'application/json' }
-                    }).then(function (res) {
-                        return res.json()
-                    }).then(function (data) {
-                        alert(data.mensaje)
-                    }).catch(function (error) {
-                        console.log(error)
-                    });
-                    window.location.href = "paciente.html?id="+getParametro("id") + "&n=" + getParametro("n")
-                }
-            </script>
+          </div>
+      </div>
+  </main>
+<script>
+  var antes = `<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<thead>
+<tr>
+<th>Fecha</th>
+<th>Hora</th>
+<th>Motivo</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>`
+  var despues = `</tbody>
+</table>`
+  let xhr = new XMLHttpRequest(); //https://api202001923.herokuapp.com
+  var ruta = "http://localhost:3000/obtener_citas";
+  xhr.open('GET', ruta);
+  xhr.send()
+  xhr.onreadystatechange = (e) => {
+      var citas = JSON.parse(xhr.responseText);
+      var cuerpo = "";
+      var cuerpo2 = "";
+      for (var i = 0; i<citas.length; i++) {
+          cuerpo += '<tr>';
+          cuerpo2 += '<tr>';
+          cuerpo += '<td>' + citas[i].fecha + '</td>';
+          cuerpo2 += '<td>' + citas[i].fecha + '</td>';
+          cuerpo += '<td>' + citas[i].hora + '</td>';
+          cuerpo2 += '<td>' + citas[i].hora + '</td>';
+          cuerpo += '<td>' + citas[i].motivo + '</td>';
+          cuerpo2 += '<td>' + citas[i].motivo + '</td>';
+          cuerpo += '<td>' + citas[i].estado + '</td>';
+          cuerpo2 += '<td>' + citas[i].estado + '</td>';
+          cuerpo += '<td><a type="button" class="btn btn-success" href="edit_cita.html?indice=' + i + '">Aceptar</a></td>';
+          cuerpo += '<td><a type="button" class="btn btn-danger" href="rechazar_cita.html?indice=' + i + "&id=" + getParametro("id") + "&n=" + getParametro("n") + '">Eliminar</a></td>';
+          cuerpo += '</tr>';
+          cuerpo2 += '</tr>';
+      }
+      document.getElementById("tabla").innerHTML = antes + cuerpo + despues;
+      document.getElementById("tabla2").innerHTML = antes + cuerpo2 + despues;
+  }
+</script>
             <footer class="py-4 bg-light mt-auto">
 
             </footer>
@@ -251,3 +211,4 @@
   </script>
 
 </html>
+
