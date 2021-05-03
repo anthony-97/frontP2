@@ -15,6 +15,10 @@
 
 <body class="bg-primary">
     <div id="layoutAuthentication">
+        <center><a class="navbar-brand" href="./index.html" title="" style="color:white">
+            <img src="./assets/images/mashup-icon.svg" class="navbar-logo-img" alt="">
+            UHospital
+          </a></center>
         <div id="layoutAuthentication_content">
             <main>
                 <div class="container">
@@ -38,7 +42,7 @@
                                         </div>
                                         <div
                                             class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="password.html">Forgot Password?</a>
+                                            <a class="small" href="password.html" style="visibility: hidden;">Olvide la contrasena</a>
                                             <a class="btn btn-primary" onclick="login()">Iniciar sesión</a>
                                         </div>
                                     </form>
@@ -56,8 +60,7 @@
             function login() {
                 const user = document.getElementById('usuario').value;
                 const contra = document.getElementById('contrasena').value;
-                //https://proyecto2-t1.herokuapp.com/login?nombre_usuario=admin&contrasena=1234
-                const url = 'http://localhost:3000/';
+                const url = 'https://api202001923.herokuapp.com/';
                 const ruta = url + "login?nombre_usuario=" + user + "&contrasena=" + contra;
                // alert("usuario " + user )
                 fetch(ruta)
@@ -89,6 +92,11 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">UHospital 2021</div>
+                        <div>
+                            <a href="index.html">Regresar al inicio</a>
+                        </div>
+                    </div>
                 </div>
             </footer>
         </div>

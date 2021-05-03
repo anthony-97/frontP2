@@ -41,6 +41,7 @@
           </div>
           <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="./admin.html" title="">Volver a la Administración</a></li>
               <li><a href="./login.html" title="">Cerrar Sesión</a></li>
               <li>
               </li>
@@ -55,9 +56,6 @@
     </header>
 
     <title>UHospital - Carga de Pacientes</title>
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
@@ -70,7 +68,7 @@
                 document.getElementById("contenido").innerHTML = contenido
                 envio = JSON.stringify({ contenido: contenido });
                 console.log(envio)
-                let respuesta = fetch("http://localhost:3000/cargar_pacientes", {
+                let respuesta = fetch("https://api202001923.herokuapp.com/cargar_pacientes", {
                     method: 'POST',
                     body: envio,
                     headers: { 'Content-Type': 'application/json' }
@@ -94,12 +92,12 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Pacientes</h1>
+                    <h1 class="text-center">Pacientes</h1>
                     <h6>Carga masiva</h6>
                     <input type="file" accept="text/plain" onchange="cargarArchivo(event)">
                     <div id="contenido"></div>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Pacientes</li>
+                        <p><small>Pacientes en el sistema</small></p>
                     </ol>
                     <div class="table-responsive" id="tabla">
 
@@ -128,7 +126,7 @@
                 var despues = `</tbody>
 </table>`
                 let xhr = new XMLHttpRequest();
-                var ruta = "http://localhost:3000/obtener_pacientes";
+                var ruta = "https://api202001923.herokuapp.com/obtener_pacientes";
                 xhr.open('GET', ruta);
                 xhr.send()
                 xhr.onreadystatechange = (e) => {
@@ -163,18 +161,6 @@
                     document.getElementById("tabla2").innerHTML = antes + cuerpo2 + despues;
                 }
             </script>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
@@ -188,5 +174,39 @@
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
 </body>
+
+<footer class="footer-container white-text-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h3>UHospital</h3>
+  
+          <div class="row">
+            <div class="col-xs-12 col-sm-7">
+            <p><small>Departamento de Sistemas UHospital</small> 
+            <p><small>La Antigua Guatemala, Sacatepéquez, Guatemala</small>
+                <p><small><a href="index.html" title="Create website with free html template">Página de inicio</a></small>
+
+              </p>
+            </div>
+            <div class="col-xs-12 col-sm-5">
+              <p class="text-right">
+                <a href="https://facebook.com/" class="social-round-icon white-round-icon fa-icon" title="">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="https://twitter.com/" class="social-round-icon white-round-icon fa-icon" title="">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.linkedin.com/" class="social-round-icon white-round-icon fa-icon" title="">
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+              </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
 
 </html>

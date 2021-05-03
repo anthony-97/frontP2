@@ -9,7 +9,7 @@
 
         async function rechazar_cita(){
             let json = JSON.stringify({indice: getParametro("indice")})
-            let respuesta = await fetch("http://localhost:3000/rechazar_cita",{
+            let respuesta = await fetch("https://api202001923.herokuapp.com/rechazar_cita",{
                 method: 'POST',
                 body: json,
                 headers: {'Content-Type': 'application/json'}

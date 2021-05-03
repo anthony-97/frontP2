@@ -9,7 +9,7 @@
 
         async function eliminar_pac(){
             let json = JSON.stringify({indice: getParametro("indice")})
-            let respuesta = await fetch("http://localhost:3000/eliminar_paciente",{
+            let respuesta = await fetch("https://api202001923.herokuapp.com/eliminar_paciente",{
                 method: 'POST',
                 body: json,
                 headers: {'Content-Type': 'application/json'}

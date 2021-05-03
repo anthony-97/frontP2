@@ -122,7 +122,7 @@
                 </div>
             </main>
             <script>//Al cambiar a heroku, ponerle la s al http
-                const url = 'http://localhost:3000/';
+                const url = 'https://api202001923.herokuapp.com/';
                 const ruta = url + "tiene_cita?id=" + getParametro("id");
                 fetch(ruta)
                     .then((resp) => resp.json())
@@ -168,7 +168,7 @@
                         hora: document.getElementById("hora").value,
                         motivo: document.getElementById("motivo").value
                     })
-                    let respuesta = await fetch("http://localhost:3000/solicitar_cita", {
+                    let respuesta = await fetch("https://api202001923.herokuapp.com/solicitar_cita", {
                         method: 'POST',
                         body: json,
                         headers: { 'Content-Type': 'application/json' }
