@@ -85,6 +85,9 @@
             pdf.fromHTML($('#tabla2').get(0),10,10,{'width':180});
             pdf.autoPrint();
             pdf.output("dataurlnewwindow")
+            pdf.text(20, 20, 'Hola mundo');
+            pdf.text(20, 30, 'Vamos a generar un pdf desde el lado del cliente');
+            pdf.save('documento.pdf');
         }
     </script>
 </head>
