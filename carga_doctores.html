@@ -80,14 +80,28 @@
             reader.readAsText(archivo.files[0])
         }
 
-        function crearPDF(){
-            var pdf = new jsPDF();
-            pdf.fromHTML($('#tabla2').get(0),10,10,{'width':180});
-            pdf.autoPrint();
+        
+     //   function crearPDF(){
+        var doc = new jsPDF();
+        var elementHTML = $('#tabla2').html();
+        var specialElementHandlers = {
+            '#tabla2': function (element, renderer) {
+        return true;
+    }
+};
+doc.fromHTML(elementHTML, 15, 15, {
+    'width': 170,
+    'elementHandlers': specialElementHandlers
+});
+
+// Save the PDF
+doc.save('prueba.pdf');
+            //var pdf = new jsPDF();
+            //pdf.fromHTML($('#tabla2').get(0),10,10,{'width':180});
+            /*pdf.autoPrint();
             pdf.output("dataurlnewwindow")
-            pdf.text(20, 20, 'Hola mundo');
-            pdf.text(20, 30, 'Vamos a generar un pdf desde el lado del cliente');
             pdf.save('documento.pdf');
+        }*/
         }
     </script>
 </head>
