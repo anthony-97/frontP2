@@ -68,7 +68,7 @@
                 document.getElementById("contenido").innerHTML = contenido
                 envio = JSON.stringify({ contenido: contenido });
                 console.log(envio)
-                let respuesta = fetch("http://localhost:3000/cargar_doctores", {
+                let respuesta = fetch("https://api202001923.herokuapp.com/cargar_doctores", {
                     method: 'POST',
                     body: envio,
                     headers: { 'Content-Type': 'application/json' }
