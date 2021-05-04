@@ -82,7 +82,10 @@
                             if(data.sesion == 4){
                             window.location.href = "enfermera.html?id=" + data.indice + "&n=" + data.nombre
                             }
+                        } else {
+                            alert(data.mensaje)
                         }
+                    
                     }).catch(function (error) {
                         console.log(error);
                     });
