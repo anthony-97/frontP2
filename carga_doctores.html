@@ -85,7 +85,7 @@
         var doc = new jsPDF();
         var elementHTML = $('#tabla2').html();
         var specialElementHandlers = {
-            '#tabla2': function (element, renderer) {
+            '#fin': function (element, renderer) {
         return true;
     }
 };
@@ -119,6 +119,7 @@ doc.save('prueba.pdf');
                     <div class="table-responsive" id="tabla">
 
                     </div>
+                    <div id="fin"></div>
                     <a class="btn btn-primary" onclick="crearPDF()">Generar PDF</a>
                     <div class="table-responsive" id="tabla2" style="visibility: hidden;">
 
