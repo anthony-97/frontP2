@@ -131,7 +131,7 @@
                 var despues = `</tbody>
 </table>`
                 let xhr = new XMLHttpRequest();
-                var ruta = "http://localhost:3000/obtener_doctores";
+                var ruta = "https://api202001923.herokuapp.com/obtener_doctores";
                 xhr.open('GET', ruta);
                 xhr.send()
                 xhr.onreadystatechange = (e) => {
