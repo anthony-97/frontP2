@@ -82,7 +82,9 @@
 
         
         function crearPDF(){
-        var doc = new jsPDF();
+        var doc = new jsPDF({
+        orientation: 'landscape'
+        });
         var elementHTML = $('#tabla2').html();
         var specialElementHandlers = {
             '#fin': function (element, renderer) {
