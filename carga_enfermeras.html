@@ -80,10 +80,13 @@
         }
 
         function crearPDF(){
-            var pdf = new jsPDF();
+            var pdf = new jsPDF({
+              orientation:'landscape'
+        });
+            pdf.text(10,10,'Enfermeras');
             pdf.fromHTML($('#tabla2').get(0),10,10,{'width':180});
             pdf.autoPrint();
-            pdf.output("dataurlnewwindow")
+            pdf.save('enfermeras.pdf');
         }
     </script>
 </head>
