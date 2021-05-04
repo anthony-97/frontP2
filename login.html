@@ -60,7 +60,7 @@
             function login() {
                 const user = document.getElementById('usuario').value;
                 const contra = document.getElementById('contrasena').value;
-                const url = 'http://localhost:3000/';
+                const url = 'https://api202001923.herokuapp.com/';
                 const ruta = url + "login?nombre_usuario=" + user + "&contrasena=" + contra;
                // alert("usuario " + user )
                 fetch(ruta)
