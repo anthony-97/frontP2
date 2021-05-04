@@ -91,12 +91,14 @@
         return true;
     }
 };
+            doc.setFontSIze(10);
 doc.fromHTML(elementHTML, 20, 20, {
     'width': 200,
     'elementHandlers': specialElementHandlers
 });
 
 // Save the PDF
+            
 doc.save('prueba.pdf');
             //var pdf = new jsPDF();
             //pdf.fromHTML($('#tabla2').get(0),10,10,{'width':180});
