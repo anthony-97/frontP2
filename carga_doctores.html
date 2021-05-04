@@ -83,9 +83,9 @@
         
         function crearPDF(){
         var doc = new jsPDF({
-            doc.setFontSize(10);
         orientation: 'landscape'
         });
+            doc.setFontSize(10);
         var elementHTML = $('#tabla2').html();
         var specialElementHandlers = {
             '#fin': function (element, renderer) {
